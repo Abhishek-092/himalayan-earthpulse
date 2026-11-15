@@ -1,0 +1,154 @@
+{
+ "region": "gangotri",
+ "checks": [
+  {
+   "stage": "GCOV metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 55",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GCOV metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 51, R05.03.2: 4",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 48",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 47, R05.00.8: 1",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 50",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 49, R05.00.8: 1",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Product level & calibration",
+   "status": "pass",
+   "value": "L2 GCOV, RTC gamma-0, terms ['HHHH', 'HVHV']",
+   "expected": "radiometrically terrain-corrected backscatter (no re-calibration needed)",
+   "note": "GCOV is already calibrated and terrain-flattened by the NISAR processor (ISCE3); we do not repeat it."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Common map grid",
+   "status": "pass",
+   "value": "EPSG 32644, 3/3 dates on identical 2728x2819 grid (10 m)",
+   "expected": "all dates share CRS and pixel grid",
+   "note": "Dates on a different grid (other imaging mode) are excluded."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Backscatter value range",
+   "status": "pass",
+   "value": "median HH -4.9 dB, HV -11.3 dB",
+   "expected": "HH -25..2 dB, HV -32..-5 dB (L-band land)",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Speckle reduction (ENL)",
+   "status": "pass",
+   "value": "ENL raw 5.0 -> 2x2 looks 7.6 -> multitemporal 12.7",
+   "expected": "ENL increases at each step",
+   "note": "Higher equivalent number of looks = less speckle."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Filters preserve radiometry",
+   "status": "pass",
+   "value": "mean ratio Quegan 1.000, refined Lee 1.083",
+   "expected": "within 5% / 10% of unfiltered mean",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Co-registration between dates",
+   "status": "pass",
+   "value": "stable-ground offset 1.5 m (median), scatter 2.2 m, 132 chips (2025-11-26 vs 2026-11-09)",
+   "expected": "< 0.15 px systematic, < 0.5 px scatter",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Terrain correction (RTC) residual",
+   "status": "warn",
+   "value": "snow-free land HV facing radar - facing away = -3.3 dB",
+   "expected": "|diff| < 3 dB (uncorrected L-band slopes differ by 5-10 dB)",
+   "note": "Same land cover on opposite slopes should look similar after radiometric terrain correction."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Quality masks",
+   "status": "pass",
+   "value": "valid 99%, forest 0%, permanent water 0.2%, snow/ice 67%",
+   "expected": "> 60% valid pixels",
+   "note": "Invalid = outside swath, layover/shadow or no-data in the product mask."
+  },
+  {
+   "stage": "GOFF A055_F017",
+   "check": "Offsets -> ground velocity geometry",
+   "status": "pass",
+   "value": "LOS + along-track unit vectors from product metadata cubes, interpolated at DEM height",
+   "expected": "per-pixel geometry, surface-parallel flow",
+   "note": ""
+  },
+  {
+   "stage": "GOFF A055_F017",
+   "check": "Stable ground bias",
+   "status": "pass",
+   "value": "1.2 m/yr on non-glacier gentle terrain",
+   "expected": "< 3 m/yr",
+   "note": "Per-pair constant bias removed using stable ground."
+  },
+  {
+   "stage": "GOFF A055_F017",
+   "check": "Independent check: ITS_LIVE",
+   "status": "warn",
+   "value": "MAE 11.9 m/yr, bias -4.1, r 0.45 (n=22909)",
+   "expected": "r > 0.5",
+   "note": "Moderate: ITS_LIVE is a 2014-22 average at 120 m; slow tributary and accumulation ice dominate the pixel count."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Feature-tracking noise on stable ground",
+   "status": "pass",
+   "value": "1.8 m over 0.95 yr",
+   "expected": "< 5 m (0.25 px at 20 m)",
+   "note": ""
+  }
+ ],
+ "counts": {
+  "pass": 10,
+  "warn": 8,
+  "fail": 0
+ }
+}

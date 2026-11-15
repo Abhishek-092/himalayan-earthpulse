@@ -1,0 +1,14 @@
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+pipeline/data/
+# node
+web/node_modules/
+web/.next/
+web/out/
+.vercel
+.env*
+.DS_Store
+.claude/

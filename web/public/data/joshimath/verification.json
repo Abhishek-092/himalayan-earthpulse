@@ -1,0 +1,314 @@
+{
+ "region": "joshimath",
+ "checks": [
+  {
+   "stage": "GCOV metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 41",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GCOV metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 33, R05.00.8: 5, R05.03.2: 3",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 34",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 31, R05.00.8: 3",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 34",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 31, R05.00.8: 3",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Product processing record (ISCE3)",
+   "status": "pass",
+   "value": "phase filter: no_filter; unwrapper: snaphu (smooth); troposphere wet/hydrostatic: True/True; topographic flattening: True; looks 13x16",
+   "expected": "documented and not repeated",
+   "note": "Product has no phase filter, so we apply Goldstein (alpha 0.0) before re-unwrapping."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Layover / radar-shadow mask",
+   "status": "pass",
+   "value": "layover 3.03%, shadow 8.62%, incidence [44.0, 44.6] deg",
+   "expected": "computed from DEM + product LOS",
+   "note": "Masked pixels are excluded from all interferograms."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Product processing record (ISCE3)",
+   "status": "pass",
+   "value": "phase filter: no_filter; unwrapper: snaphu (smooth); troposphere wet/hydrostatic: True/True; topographic flattening: True; looks 7x16",
+   "expected": "documented and not repeated",
+   "note": "Product has no phase filter, so we apply Goldstein (alpha 0.0) before re-unwrapping."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Layover / radar-shadow mask",
+   "status": "pass",
+   "value": "layover 3.61%, shadow 7.74%, incidence [45.5, 46.2] deg",
+   "expected": "computed from DEM + product LOS",
+   "note": "Masked pixels are excluded from all interferograms."
+  },
+  {
+   "stage": "GDM filtering",
+   "check": "Goldstein phase filter tested vs unfiltered",
+   "status": "pass",
+   "value": "a=0.0: A127 2.0 mm/yr, noise 0.7 cm; a=0.0: D106 1.4 mm/yr, noise 2.21 cm; a=0.3: A127 -4.0 mm/yr, noise 0.62 cm; a=0.3: D106 -4.3 mm/yr, noise 1.63 cm; a=0.5: A127 -7.7 mm/yr, noise 0.59 cm; a=0.5: D106 -12.1 mm/yr, noise 1.9 cm; a=0.8: A127 -4.0 mm/yr, noise 0.56 cm; a=0.8: D106 -57.3 mm/yr, noise 1.79 cm",
+   "expected": "filter adopted only if it does not bias results",
+   "note": "Goldstein filtering lowers per-pair noise but shifts the sparse settlement estimates strongly (up to tens of mm/yr at alpha 0.8) because filter energy leaks across masked gaps of an already multilooked (about 7x16 looks) product; results are therefore reported without it. Adopted alpha = 0.0."
+  },
+  {
+   "stage": "GDM asc/desc",
+   "check": "Ascending vs descending consistency",
+   "status": "warn",
+   "value": "vertical-equivalent difference median -11.79 mm/yr, spread 130.96 mm/yr, r = -0.185 (376 px)",
+   "expected": "|median| < 10 mm/yr",
+   "note": "Vertical-equivalent velocities from the two geometries on reliable pixels; agreement near zero difference supports the measurement, differences include real horizontal motion."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Product processing flags",
+   "status": "pass",
+   "value": "noise correction applied: False; shadow masking applied: False",
+   "expected": "known before analysis",
+   "note": "Both are False in the provisional GCOV, so this project applies NESZ subtraction and its own layover/shadow mask."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Thermal noise correction + noise floor",
+   "status": "pass",
+   "value": "NESZ subtracted; 15.59% of pixels within 3 dB of the noise floor (masked)",
+   "expected": "noise handled",
+   "note": "Uses the product's noiseEquivalentBackscatter (HH, HV)."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Layover / radar-shadow mask",
+   "status": "pass",
+   "value": "layover 4.83%, shadow 6.97%",
+   "expected": "computed from DEM + product LOS",
+   "note": "Local and cast shadow; masked pixels excluded from change detection."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Snow-date mask",
+   "status": "pass",
+   "value": "6/17 acquisition dates snow-covered (ERA5-Land > 1 cm)",
+   "expected": "per-date snow flag",
+   "note": "Forest changes first seen on snow dates are labelled snow-affected, not lasting disturbance."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Product level & calibration",
+   "status": "pass",
+   "value": "L2 GCOV, RTC gamma-0, terms ['HHHH', 'HVHV']",
+   "expected": "radiometrically terrain-corrected backscatter (no re-calibration needed)",
+   "note": "GCOV is already calibrated and terrain-flattened by the NISAR processor (ISCE3); we do not repeat it."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Common map grid",
+   "status": "pass",
+   "value": "EPSG 32644, 17/27 dates on identical 585x455 grid (10 m)",
+   "expected": "all dates share CRS and pixel grid",
+   "note": "Dates on a different grid (other imaging mode) are excluded."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Backscatter value range",
+   "status": "pass",
+   "value": "median HH -8.1 dB, HV -13.9 dB",
+   "expected": "HH -25..2 dB, HV -32..-5 dB (L-band land)",
+   "note": ""
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Forest brighter than bare/snow (HV)",
+   "status": "pass",
+   "value": "forest - bare = 1.2 dB",
+   "expected": "> 1 dB",
+   "note": "Too little open water in this area for a water test."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Speckle reduction (ENL)",
+   "status": "pass",
+   "value": "ENL raw 5.6 -> 2x2 looks 10.1 -> multitemporal 13.8",
+   "expected": "ENL increases at each step",
+   "note": "Higher equivalent number of looks = less speckle."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Filters preserve radiometry",
+   "status": "pass",
+   "value": "mean ratio Quegan 1.002, refined Lee 1.068",
+   "expected": "within 5% / 10% of unfiltered mean",
+   "note": ""
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Co-registration between dates",
+   "status": "pass",
+   "value": "stable-ground offset 0.5 m (median), scatter 1.4 m, 46 chips (2025-11-29 vs 2026-11-12)",
+   "expected": "< 0.15 px systematic, < 0.5 px scatter",
+   "note": ""
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Terrain correction (RTC) residual",
+   "status": "pass",
+   "value": "forest HV facing radar - facing away = -0.6 dB",
+   "expected": "|diff| < 3 dB (uncorrected L-band slopes differ by 5-10 dB)",
+   "note": "Same land cover on opposite slopes should look similar after radiometric terrain correction."
+  },
+  {
+   "stage": "GCOV D106_F073",
+   "check": "Quality masks",
+   "status": "pass",
+   "value": "valid 96%, forest 39%, permanent water 0.1%, snow/ice 0%",
+   "expected": "> 60% valid pixels",
+   "note": "Invalid = outside swath, layover/shadow or no-data in the product mask."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Wavelength from metadata",
+   "status": "pass",
+   "value": "1239.0 MHz -> lambda 24.20 cm",
+   "expected": "read per granule (not assumed)",
+   "note": "One fringe = lambda/2."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Ionosphere correction",
+   "status": "pass",
+   "value": "screen applied; spatial range 0.60 rad in AOI",
+   "expected": "split-spectrum ionosphere screen subtracted from every pair",
+   "note": ""
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Interferogram quality control",
+   "status": "pass",
+   "value": "9/10 pairs used; median residual noise 0.7 cm (rejected pairs: low valid fraction or noise > 3x median)",
+   "expected": ">= 60% of pairs usable",
+   "note": "Rejected pairs are mostly winter-snow and monsoon pairs."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Coherence mask",
+   "status": "pass",
+   "value": "median 61% of pixels coherent (>= 0.4) per pair; mean coherence 0.51",
+   "expected": "> 40% coherent per pair",
+   "note": ""
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Stable reference area",
+   "status": "pass",
+   "value": "reference velocity 2.3 mm/yr, scatter 24.5 mm/yr",
+   "expected": "|median| < 5 mm/yr",
+   "note": "Auto-selected: coherent, gentle, lowest-velocity pixels (two-pass)."
+  },
+  {
+   "stage": "GUNW A127_F017",
+   "check": "Vegetation (phase-closure) bias check",
+   "status": "warn",
+   "value": "forest - settlement apparent velocity = -18.0 mm/yr",
+   "expected": "< 10 mm/yr if no bias",
+   "note": "Detected bias -> vegetated pixels excluded from deformation results."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Wavelength from metadata",
+   "status": "pass",
+   "value": "1229.0 MHz -> lambda 24.39 cm",
+   "expected": "read per granule (not assumed)",
+   "note": "One fringe = lambda/2."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Ionosphere correction",
+   "status": "pass",
+   "value": "screen applied; spatial range 0.58 rad in AOI",
+   "expected": "split-spectrum ionosphere screen subtracted from every pair",
+   "note": ""
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Interferogram quality control",
+   "status": "pass",
+   "value": "18/24 pairs used; median residual noise 2.3 cm (rejected pairs: low valid fraction or noise > 3x median)",
+   "expected": ">= 60% of pairs usable",
+   "note": "Rejected pairs are mostly winter-snow and monsoon pairs."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Coherence mask",
+   "status": "pass",
+   "value": "median 54% of pixels coherent (>= 0.4) per pair; mean coherence 0.44",
+   "expected": "> 40% coherent per pair",
+   "note": ""
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Stable reference area",
+   "status": "pass",
+   "value": "reference velocity 1.9 mm/yr, scatter 15.1 mm/yr",
+   "expected": "|median| < 5 mm/yr",
+   "note": "Auto-selected: coherent, gentle, lowest-velocity pixels (two-pass)."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Vegetation (phase-closure) bias check",
+   "status": "warn",
+   "value": "forest - settlement apparent velocity = +86.9 mm/yr",
+   "expected": "< 10 mm/yr if no bias",
+   "note": "Detected bias -> vegetated pixels excluded from deformation results."
+  },
+  {
+   "stage": "GUNW D106_F073",
+   "check": "Unwrapping-error repair",
+   "status": "pass",
+   "value": "median per-pair noise 10.1 cm -> 2.5 cm; worst pair 49 -> 11 cm",
+   "expected": "noise decreases after re-unwrapping",
+   "note": "Smooth-model removal + quality-guided re-unwrapping + island cycle snapping."
+  }
+ ],
+ "counts": {
+  "pass": 29,
+  "warn": 9,
+  "fail": 0
+ }
+}

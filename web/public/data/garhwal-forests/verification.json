@@ -1,0 +1,162 @@
+{
+ "region": "garhwal-forests",
+ "checks": [
+  {
+   "stage": "GCOV metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 55",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GCOV metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 51, R05.03.2: 4",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 48",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GUNW metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 47, R05.00.8: 1",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Orbit ephemeris type",
+   "status": "warn",
+   "value": "MOE: 50",
+   "expected": "precise (POE) orbits",
+   "note": "MOE = medium-precision orbits, the only ones in the provisional release. Fine for 80 m products; residual orbit ramps are removed per interferogram (GDM)."
+  },
+  {
+   "stage": "GOFF metadata",
+   "check": "Processor version consistency",
+   "status": "warn",
+   "value": "R05.02.3: 49, R05.00.8: 1",
+   "expected": "one processing version across the stack",
+   "note": "Mixed versions can introduce small calibration jumps; the change test's significance level and the date-by-date QC limit the impact."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Product processing flags",
+   "status": "pass",
+   "value": "noise correction applied: False; shadow masking applied: False",
+   "expected": "known before analysis",
+   "note": "Both are False in the provisional GCOV, so this project applies NESZ subtraction and its own layover/shadow mask."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Thermal noise correction + noise floor",
+   "status": "pass",
+   "value": "NESZ subtracted; 0.06% of pixels within 3 dB of the noise floor (masked)",
+   "expected": "noise handled",
+   "note": "Uses the product's noiseEquivalentBackscatter (HH, HV)."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Layover / radar-shadow mask",
+   "status": "pass",
+   "value": "layover 7.35%, shadow 0.14%",
+   "expected": "computed from DEM + product LOS",
+   "note": "Local and cast shadow; masked pixels excluded from change detection."
+  },
+  {
+   "stage": "GCOV masks",
+   "check": "Snow-date mask",
+   "status": "pass",
+   "value": "0/14 acquisition dates snow-covered (ERA5-Land > 1 cm)",
+   "expected": "per-date snow flag",
+   "note": "Forest changes first seen on snow dates are labelled snow-affected, not lasting disturbance."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Product level & calibration",
+   "status": "pass",
+   "value": "L2 GCOV, RTC gamma-0, terms ['HHHH', 'HVHV']",
+   "expected": "radiometrically terrain-corrected backscatter (no re-calibration needed)",
+   "note": "GCOV is already calibrated and terrain-flattened by the NISAR processor (ISCE3); we do not repeat it."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Common map grid",
+   "status": "pass",
+   "value": "EPSG 32644, 14/14 dates on identical 1465x1356 grid (10 m)",
+   "expected": "all dates share CRS and pixel grid",
+   "note": "Dates on a different grid (other imaging mode) are excluded."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Backscatter value range",
+   "status": "pass",
+   "value": "median HH -6.3 dB, HV -11.6 dB",
+   "expected": "HH -25..2 dB, HV -32..-5 dB (L-band land)",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Water darker than forest (HV)",
+   "status": "pass",
+   "value": "forest - water = 5.0 dB",
+   "expected": "> 3 dB (smooth water reflects away; forest volume-scatters)",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Speckle reduction (ENL)",
+   "status": "pass",
+   "value": "ENL raw 4.7 -> 2x2 looks 9.9 -> multitemporal 20.9",
+   "expected": "ENL increases at each step",
+   "note": "Higher equivalent number of looks = less speckle."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Filters preserve radiometry",
+   "status": "pass",
+   "value": "mean ratio Quegan 0.999, refined Lee 1.066",
+   "expected": "within 5% / 10% of unfiltered mean",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Co-registration between dates",
+   "status": "pass",
+   "value": "stable-ground offset 0.5 m (median), scatter 1.3 m, 160 chips (2025-11-26 vs 2026-10-28)",
+   "expected": "< 0.15 px systematic, < 0.5 px scatter",
+   "note": ""
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Terrain correction (RTC) residual",
+   "status": "warn",
+   "value": "forest HV facing radar - facing away = -3.6 dB",
+   "expected": "|diff| < 3 dB (uncorrected L-band slopes differ by 5-10 dB)",
+   "note": "Same land cover on opposite slopes should look similar after radiometric terrain correction."
+  },
+  {
+   "stage": "GCOV A055_F017",
+   "check": "Quality masks",
+   "status": "pass",
+   "value": "valid 100%, forest 70%, permanent water 0.2%, snow/ice 0%",
+   "expected": "> 60% valid pixels",
+   "note": "Invalid = outside swath, layover/shadow or no-data in the product mask."
+  }
+ ],
+ "counts": {
+  "pass": 12,
+  "warn": 7,
+  "fail": 0
+ }
+}

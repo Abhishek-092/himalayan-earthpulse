@@ -1,0 +1,61 @@
+# HIMALAYAN EARTHPULSE study regions.
+#
+# A region needs ONLY an id, a display name and a footprint (bbox [W,S,E,N] in EPSG:4326, or a GeoJSON polygon).
+# Everything else (NISAR tracks/frames, applicable models, InSAR reference area, glacier/forest/water masks)
+# is auto-detected by `earthpulse resolve` and written to data/sites.resolved.json.
+#
+# Optional keys:
+#   story:      one-line plain-language description shown in the app
+#   priority:   "hero" regions are processed in depth first; "catalog" regions are discovered + processed if time allows
+#   overrides:  { models: [gdm, cdm, bdm], reference_bbox: [W,S,E,N], start: YYYY-MM-DD, end: YYYY-MM-DD, tracks: [55, 106] }
+#
+# Add a region:  earthpulse add-region <id> --name "..." --bbox W S E N
+
+regions:
+  - id: joshimath
+    name: Joshimath, Uttarakhand
+    bbox: [79.50, 30.52, 79.62, 30.60]
+    story: A Himalayan town built on old landslide debris, where ground subsidence made headlines in January 2023.
+    priority: hero
+
+  - id: gangotri
+    name: Gangotri Glacier, Uttarakhand
+    bbox: [79.02, 30.72, 79.30, 30.97]
+    story: The source glacier of the Bhagirathi (Ganga), about 30 km long, flowing north-west to its snout at Gaumukh.
+    priority: hero
+
+  - id: garhwal-forests
+    name: Garhwal forests, Uttarakhand
+    bbox: [79.25, 30.35, 79.40, 30.47]
+    story: Mixed oak-pine-deodar forests around Gopeshwar (Chamoli) that face pre-monsoon fires and monsoon landslides.
+    priority: hero
+
+  - id: bara-shigri
+    name: Bara Shigri Glacier, Himachal Pradesh
+    bbox: [77.58, 32.05, 77.82, 32.28]
+    story: One of the largest glaciers in Himachal Pradesh, in the Chandra valley of Lahaul-Spiti.
+    priority: catalog
+
+  - id: zemu
+    name: Zemu Glacier, Sikkim
+    bbox: [88.12, 27.66, 88.36, 27.80]
+    story: The largest glacier of the Eastern Himalaya, draining the Kangchenjunga massif.
+    priority: catalog
+
+  - id: arunachal-forests
+    name: Pakke forests, Arunachal Pradesh
+    bbox: [92.85, 26.95, 93.15, 27.20]
+    story: Dense tropical and subtropical forest in the Eastern Himalayan foothills.
+    priority: catalog
+
+  - id: kachchh
+    name: Bhuj, Kachchh, Gujarat
+    bbox: [69.55, 23.15, 69.80, 23.35]
+    story: An active intraplate seismic zone, struck by the 2001 Bhuj earthquake.
+    priority: catalog
+
+  - id: western-ghats
+    name: Wayanad, Western Ghats, Kerala
+    bbox: [75.95, 11.45, 76.25, 11.70]
+    story: Biodiversity-rich forested slopes, hit by the deadly July 2024 debris flows.
+    priority: catalog
